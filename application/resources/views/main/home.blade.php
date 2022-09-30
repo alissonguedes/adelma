@@ -35,8 +35,8 @@
 			<div class="menu menu-left">
 				<ul>
 					<li><a href="{{ route('main.home') }}">Início</a></li>
-					<li><a href="/pages/dark-theme">Galeria</a></li>
-					<li><a href="/pages/dark-theme">Blog</a></li>
+					<li><a href="/">Galeria</a></li>
+					<li><a href="/">Blog</a></li>
 				</ul>
 			</div>
 			<div class="logo">
@@ -48,9 +48,8 @@
 			</div>
 			<div class="menu menu-right">
 				<ul>
-					<li><a href="/pages/blog">Sobre</a></li>
-					<li><a href="/pages/blog">Portfólio</a></li>
-					<li><a href="/pages/docs">Contato</a></li>
+					<li><a href="/">Sobre</a></li>
+					<li><a href="/">Contato</a></li>
 				</ul>
 			</div>
 
@@ -83,7 +82,7 @@
 		</div>
 		<div class="b e">
 			<div class="d hx hf gu ce polygon">
-				<img class="materialboxed responsive-img" src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-aquamarine.jpg?v=66721701265724502141487026013" alt="placeholder" crossOrigin="anonymous">
+				<img class="materialboxed responsive-img" src="{{ asset('img/site/1.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 
 				{{--
 				<div class="gallery-curve-wrapper">
@@ -119,7 +118,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce polygon">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-sun.jpg?v=53287264807679260261487025906" alt="placeholder" crossOrigin="anonymous">
+						<img src="{{ asset('img/site/2.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -149,7 +148,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce bigbang">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img class="responsive-img" src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/bigbang1.png?v=160370081951563797111487026349" alt="placeholder" crossOrigin="anonymous">
+						<img class="responsive-img" src="{{ asset('img/site/3.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -179,7 +178,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce polygon">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-maze.jpg?v=142381636332995208141487025933" alt="placeholder" crossOrigin="anonymous">
+						<img src="{{ asset('img/site/4.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -209,7 +208,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce polygon">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-ice.jpg?v=104744048428002372381487025923" alt="placeholder" crossOrigin="anonymous">
+						<img src="{{ asset('img/site/5.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -239,7 +238,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce polygon">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-cave.jpg?v=131272822431341251431487023516" alt="placeholder" crossOrigin="anonymous">
+						<img src="{{ asset('img/site/6.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -269,7 +268,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce polygon">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-grapefruit.jpg?v=40704836766041654421487026006" alt="placeholder" crossOrigin="anonymous">
+						<img src="{{ asset('img/site/7.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -301,7 +300,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce bigbang">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img class="responsive-img" src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/bigbang2.jpg?v=111487707042460145351487026357" alt="placeholder" crossOrigin="anonymous">
+						<img class="responsive-img" src="{{ asset('img/site/8.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -331,7 +330,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce bigbang">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img class="responsive-img" src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/bigbang3.jpg?v=157777758506139156451487026362" alt="placeholder" crossOrigin="anonymous">
+						<img class="responsive-img" src="{{ asset('img/site/9.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -362,7 +361,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce sacred">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img class="responsive-img" src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/sacredgeometry1.jpg?v=51494661798679454451487023471" alt="placeholder" crossOrigin="anonymous">
+						<img class="responsive-img" src="{{ asset('img/site/10.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -393,7 +392,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce sacred">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img class="responsive-img" src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/sacredgeometry2.jpg?v=183711001308838736041487023488" alt="placeholder" crossOrigin="anonymous">
+						<img class="responsive-img" src="{{ asset('img/site/11.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -424,7 +423,7 @@
 			<div class="d hx hf gu gallery-item gallery-expand ce sacred">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img class="responsive-img" src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/sacredgeometry3.jpg?v=53648064595636241011487023496" alt="placeholder" crossOrigin="anonymous">
+						<img class="responsive-img" src="{{ asset('img/site/12.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">

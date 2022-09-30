@@ -352,6 +352,12 @@ footer .copy .col {
 	background-image: url('../img/site/social/facebook.png');
 }
 
+.gallery-cover img {
+	max-width: 30px;
+	margin: 0;
+	padding: 0;
+}
+
 @media screen and (max-width:699px) {
 
 	header nav {
