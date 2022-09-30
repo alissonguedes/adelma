@@ -1,0 +1,42 @@
+/** Logo */
+
+nav .brand-logo,
+.brand-logo {
+	font-family: 'Amsterdam';
+	font-size: 28px !important;
+	line-height: 3;
+	text-align: center;
+	position: relative;
+	color: #000;
+	display: block;
+	width: 214px;
+}
+
+.brand-logo i.logo {
+	background-image: url('../img/site/logo/logo-ico.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	width: 70px;
+	height: 70px;
+	display: block;
+	margin: 0 auto;
+	float: none;
+}
+
+.brand-logo small {
+	display: block;
+	font-style: normal;
+	text-transform: uppercase;
+	font-family: 'open-sans';
+	font-size: 8px;
+	letter-spacing: 5px;
+	line-height: 1.5em;
+}
+
+.brand-logo.white-text i {
+	background-image: url('../img/site/logo/logo-ico-white.png');
+}
+
+.brand-logo.white-text {
+	color: #fff;
+}
