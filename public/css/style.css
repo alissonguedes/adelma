@@ -29,6 +29,7 @@ body {
 	margin: 0;
 	padding: 0;
 	line-height: 1.5;
+	background-color: transparent;
 }
 
 h1,
@@ -356,6 +357,12 @@ footer .copy .col {
 	max-width: 30px;
 	margin: 0;
 	padding: 0;
+}
+
+#placeholder-navbar .back-btn {
+	display: flex;
+	height: 40px;
+	line-height: 40px;
 }
 
 @media screen and (max-width:699px) {
