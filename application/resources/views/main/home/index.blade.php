@@ -14,7 +14,7 @@
 	</div>
 </div>
 
-<section id="content-page" class="no-padding">
+<section id="portfolio" class="no-padding">
 	<div class="row grey darken-3">
 		<div class="col s12">
 			<div class="title-section">
