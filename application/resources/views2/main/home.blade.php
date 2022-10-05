@@ -32,28 +32,33 @@
 	<header>
 
 		<nav class="nav-extended">
-			<div class="menu menu-left">
-				<ul>
-					<li><a href="{{ route('main.home') }}">Início</a></li>
-					<li><a href="{{ route('main.home') }}">Galeria</a></li>
-					<li><a href="{{ route('main.home') }}">Blog</a></li>
-				</ul>
-			</div>
-			<div class="logo">
-				<a href="{{ route('main.home') }}" class="brand-logo">
-					<i class="logo"></i>
-					<span>Adelma Pedrosa</span>
-					<small>fotografia newborn</small>
-				</a>
-			</div>
-			<div class="menu menu-right">
-				<ul>
-					<li><a href="{{ route('main.home') }}">Sobre</a></li>
-					<li><a href="{{ route('main.home') }}">Contato</a></li>
-				</ul>
-			</div>
 
-			<a href="#" data-activates="nav-mobile" class="button-collapse btn-floating btn-flat hide-on-large-only"><i class="material-icons">menu</i></a>
+			<div class="flex flex-center nav menu-bar">
+
+				<div class="menu menu-left">
+					<ul>
+						<li><a href="{{ route('main.home') }}">Início</a></li>
+						<li><a href="{{ route('main.home') }}">Galeria</a></li>
+						<li><a href="{{ route('main.blog') }}">Blog</a></li>
+					</ul>
+				</div>
+				<div class="logo">
+					<a href="{{ route('main.home') }}" class="brand-logo">
+						<i class="logo"></i>
+						<span>Adelma Pedrosa</span>
+						<small>fotografia newborn</small>
+					</a>
+				</div>
+				<div class="menu menu-right">
+					<ul>
+						<li><a href="{{ route('main.home') }}">Sobre</a></li>
+						<li><a href="{{ route('main.home') }}">Contato</a></li>
+					</ul>
+				</div>
+
+				<a href="#" data-activates="nav-mobile" class="button-collapse btn-floating btn-flat hide-on-large-only"><i class="material-icons">menu</i></a>
+
+			</div>
 
 		</nav>
 
@@ -81,13 +86,10 @@
 			</div>
 		</div>
 		<div class="b e">
-			<div class="d hx hf gu ce polygon">
-				<img class="materialboxed responsive-img" src="{{ asset('img/site/1.jpg') }}" alt="placeholder" crossOrigin="anonymous">
-
-				{{--
+			<div class="d hx hf gu gallery-item gallery-expand ce polygon">
 				<div class="gallery-curve-wrapper">
 					<a class="gallery-cover gray">
-						<img class="responsive-img" src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-aquamarine.jpg?v=66721701265724502141487026013" alt="placeholder" crossOrigin="anonymous">
+						<img class="responsive-img" src="{{ asset('img/site/1.jpg') }}" alt="placeholder" crossOrigin="anonymous">
 					</a>
 					<div class="gallery-body">
 						<div class="title-wrapper">
@@ -99,7 +101,7 @@
 						<p class="fi">
 							Ea salvia adipisicing vegan man bun. Flexitarian cupidatat skateboard flannel. Drinking vinegar marfa you probably haven't heard of them consequat post-ironic, shabby chic williamsburg raclette vaporware readymade selfies brunch. Venmo selvage biodiesel marfa. Tbh literally 3 wolf moon, proident elit raclette chambray consequat edison bulb four loko accusamus. Semiotics godard eiusmod, ex esse air plant quinoa vaporware selfies keytar. Actually yuccie ennui flannel single-origin coffee, williamsburg cardigan banjo forage pug distillery tumblr hexagon vinyl occaecat.</p>
 
-						<div class="carousel-wrapper">
+						{{-- <div class="carousel-wrapper">
 							<div class="t carousel">
 								<a class="carousel-item" href="#one!"><img src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-sun.jpg?v=53287264807679260261487025906" crossOrigin="anonymous"></a>
 								<a class="carousel-item" href="#two!"><img src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-maze.jpg?v=142381636332995208141487025933" crossOrigin="anonymous"></a>
@@ -107,13 +109,12 @@
 								<a class="carousel-item" href="#four!"><img src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-cave.jpg?v=131272822431341251431487023516" crossOrigin="anonymous"></a>
 								<a class="carousel-item" href="#five!"><img src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-grapefruit.jpg?v=40704836766041654421487026006" crossOrigin="anonymous"></a>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 					<div class="gallery-action">
 						<a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">favorite</i></a>
 					</div>
 				</div>
-					 --}}
 			</div>
 			<div class="d hx hf gu gallery-item gallery-expand ce polygon">
 				<div class="gallery-curve-wrapper">
@@ -464,7 +465,7 @@
 					<h2>Sobre mim</h2>
 				</div>
 
-				<div class="content-section">
+				<div class="content-section flow-text">
 
 					<div class="container">
 
@@ -501,8 +502,8 @@
 
 			<div class="row">
 
-				<div class="col l4 s12 flex flex-column">
-					<div class="logo">
+				<div class="col l4 m4 s12 flex flex-column">
+					<div class="logo logo-footer">
 						<a href="{{ route('main.home') }}" class="brand-logo white-text">
 							<i class="logo"></i>
 							<span>Adelma Pedrosa</span>
@@ -511,32 +512,31 @@
 					</div>
 				</div>
 
-				{{-- <div class="col l4 s12 flex flex-column">
-					<h5>Navegue por aqui</h5>
-					<ul>
-						<li>Link 1</li>
-						<li>Link 2</li>
-						<li>Link 3</li>
-						<li>Link 4</li>
-						<li>Link 5</li>
-						<li>Link 6</li>
-					</ul>
-				</div>
-					 --}}
-
-				<div class="col l4 s12 flex flex-column center-align">
+				<div class="col l4 m4 s12 flex flex-column center-align">
 					<h5>Institucional</h5>
 					<ul>
-						<li>Início</li>
-						<li>Galeria</li>
-						<li>Blog</li>
-						<li>Sobre</li>
-						<li>Portfólio</li>
-						<li>Contato</li>
+						<li>
+							<a href="#">Início</a>
+						</li>
+						<li>
+							<a href="#">Galeria</a>
+						</li>
+						<li>
+							<a href="#">Blog</a>
+						</li>
+						<li>
+							<a href="#">Sobre</a>
+						</li>
+						<li>
+							<a href="#">Portfólio</a>
+						</li>
+						<li>
+							<a href="#">Contato</a>
+						</li>
 					</ul>
 				</div>
 
-				<div class="col l4 s12 flex flex-end flex-column">
+				<div class="col l4 m4 s12 flex flex-end flex-column">
 					<div class="row no-padding">
 						<div class="col s12 no-padding">
 							Endereço

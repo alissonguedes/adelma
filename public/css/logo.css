@@ -9,7 +9,11 @@ nav .brand-logo,
 	position: relative;
 	color: #000;
 	display: block;
-	width: 214px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	place-content: center;
+	align-items: center;
 }
 
 .brand-logo i.logo {
@@ -19,7 +23,7 @@ nav .brand-logo,
 	width: 70px;
 	height: 70px;
 	display: block;
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	float: none;
 }
 
