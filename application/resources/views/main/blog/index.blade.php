@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('page-title', 'Blog')
+@section('page-title', 'Galeria')
 
 @section('capa')
 <div class="nav-background">
@@ -10,7 +10,7 @@
 
 @section('content')
 
-{{-- <link href="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/gallery-materialize.min.opt.css?v=27128068951715457301488087985" rel="stylesheet"> --}}
+<link href="{{ asset('plugins/gallery-materialize.css') }}" rel="stylesheet">
 
 <div id="content-page" class="cx gray">
 	<div class="db">
