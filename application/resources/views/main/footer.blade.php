@@ -16,7 +16,7 @@
 
 			<div class="col l4 m4 s12 flex flex-column center-align">
 				<h5>Institucional</h5>
-				<ul>
+				<ul class="menu">
 					<li>
 						<a href="#">Início</a>
 					</li>

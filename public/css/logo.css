@@ -1,5 +1,9 @@
 /** Logo */
 
+nav .brand-logo, .logo a {
+	text-decoration: none;
+}
+
 nav .brand-logo,
 .brand-logo {
 	font-family: 'Amsterdam';

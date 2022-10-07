@@ -20,6 +20,9 @@ if ($this->modulos->getModulos()->count() > 0) {
 			$this->permissao_modulo = $modulo->permissao;
 			$this->restrict_modulo  = $modulo->restrict;
 
+			// echo 'Route::prefix(' . $this->path_modulo . ')->group(function() {<br>
+			// 	&nbsp;&nbsp;&nbsp;&nbsp;<br>';
+
 			Route::prefix($this->path_modulo)->group(function () {
 
 				if ($this->modulos->getControllers($this->id_modulo)->count() > 0) {
@@ -39,6 +42,9 @@ if ($this->modulos->getModulos()->count() > 0) {
 				}
 
 			});
+
+			// echo '<br>';
+			// echo '});<br><br>';
 
 		}
 

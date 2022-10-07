@@ -4,79 +4,79 @@ use App\Models\ConfigModel;
 use App\Models\MenuModel;
 
 if (!function_exists('data')) {
- function data($data, $format = 'd.m.Y H:i:s', $new_format)
- {
-  $mes  = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-  $data = date($format, strtotime($data));
-  $data = preg_replace('/\.(\d){2}\./', $new_format . $mes[date('m', strtotime($data)) - 1] . $new_format, $data);
+	function data($data, $format = 'd.m.Y H:i:s', $new_format)
+	{
+		$mes  = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+		$data = date($format, strtotime($data));
+		$data = preg_replace('/\.(\d){2}\./', $new_format . $mes[date('m', strtotime($data)) - 1] . $new_format, $data);
 
-  return $data;
- }
+		return $data;
+	}
 }
 
 if (!function_exists('get_config')) {
- function get_config($config)
- {
-  $cfg = new ConfigModel();
-  // return $cfg->getConfigByKey($config)->first()->value ?? null;
-  return $cfg->getConfigByKey($config) ?? null;
- }
+	function get_config($config)
+	{
+		$cfg = new ConfigModel();
+		// return $cfg->getConfigByKey($config)->first()->value ?? null;
+		return $cfg->getConfigByKey($config) ?? null;
+	}
 }
 
 function tradutor($traducao, $lang = null, $except = null)
 {
- $idioma = is_null($lang) ? (isset($_COOKIE['idioma']) ? $_COOKIE['idioma'] : get_config('language')) : $lang;
+	$idioma = is_null($lang) ? (isset($_COOKIE['idioma']) ? $_COOKIE['idioma'] : get_config('language')) : $lang;
 
- // Formata a data e hora de acordo com o Idioma
- if (is_object($traducao)) {
-  $date = (string) $traducao;
+	// Formata a data e hora de acordo com o Idioma
+	if (is_object($traducao)) {
+		$date = (string) $traducao;
 
-  switch ($idioma) {
-   case 'en':$formato = 'Y-m-d h:ia';
-    break;
-   case 'pt-br':$formato = 'd/m/Y H\hi';
-    break;
-   case 'hr':$formato = 'd-m-y h:ia';
-    break;
-  }
+		switch ($idioma) {
+			case 'en':$formato = 'Y-m-d h:ia';
+				break;
+			case 'pt-br':$formato = 'd/m/Y H\hi';
+				break;
+			case 'hr':$formato = 'd-m-y h:ia';
+				break;
+		}
 
-  return date($formato, strtotime($date));
- }
+		return date($formato, strtotime($date));
+	}
 
- $return = is_string($traducao) ? json_decode($traducao, true) : $traducao;
+	$return = is_string($traducao) ? json_decode($traducao, true) : $traducao;
 
- if (is_array($return) && array_key_exists($idioma, $return)) {
-  if (!empty($return[$idioma])) {
-   return $return[$idioma];
-  }
- } else {
-  return tradutor([$idioma => $traducao]);
- }
+	if (is_array($return) && array_key_exists($idioma, $return)) {
+		if (!empty($return[$idioma])) {
+			return $return[$idioma];
+		}
+	} else {
+		return tradutor([$idioma => $traducao]);
+	}
 
- $catch = [
-  'en'    => 'Translation not available for this language',
-  'hr'    => 'A fordítás nem érhetó el ezen a nyelven',
-  'pt-br' => 'Tradução não disponível para este idioma',
- ];
+	$catch = [
+		'en'    => 'Translation not available for this language',
+		'hr'    => 'A fordítás nem érhetó el ezen a nyelven',
+		'pt-br' => 'Tradução não disponível para este idioma',
+	];
 
- $except = !is_null($except) ? $except : $catch;
+	$except = !is_null($except) ? $except : $catch;
 
- return $except[$idioma];
+	return $except[$idioma];
 }
 
 if (!function_exists('hashCode')) {
- function hashCode($str, $min = 32, $max = 92)
- {
-  $pass          = hash('whirlpool', $str);
-  $salt          = hash('sha512', $str);
-  $password      = substr($pass, $min, 92) . substr($salt, $min, 54);
-  $password_hash = hash('sha512', hash('md5', $password));
-  $hash          = substr(hash('whirlpool', hash('sha512', $pass . $salt . $password . $password_hash)), 0, 90);
+	function hashCode($str, $min = 32, $max = 92)
+	{
+		$pass          = hash('whirlpool', $str);
+		$salt          = hash('sha512', $str);
+		$password      = substr($pass, $min, 92) . substr($salt, $min, 54);
+		$password_hash = hash('sha512', hash('md5', $password));
+		$hash          = substr(hash('whirlpool', hash('sha512', $pass . $salt . $password . $password_hash)), 0, 90);
 
-  return !empty($str) ? substr(hash('whirlpool', hash('sha512', $hash)), 0, 77) : null;
+		return !empty($str) ? substr(hash('whirlpool', hash('sha512', $hash)), 0, 77) : null;
 
-  // return !empty($str) ? substr(hash('sha512', $str), 0, 50) : null;
- }
+		// return !empty($str) ? substr(hash('sha512', $str), 0, 50) : null;
+	}
 }
 
 function configuracoes()
@@ -90,37 +90,37 @@ function configuracoes()
  */
 function limpa_string($string, $replace = '-')
 {
- $output = [];
- $a      = ['Á' => 'a', 'À' => 'a', 'Â' => 'a', 'Ä' => 'a', 'Ã' => 'a', 'Å' => 'a', 'á' => 'a', 'à' => 'a', 'â' => 'a', 'ä' => 'a', 'ã' => 'a', 'å' => 'a', 'a' => 'a', 'Ç' => 'c', 'ç' => 'c', 'Ð' => 'd', 'É' => 'e', 'È' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'é' => 'e', 'è' => 'e', 'ê' => 'e', 'ë' => 'e', 'Í' => 'i', 'Î' => 'i', 'Ï' => 'i', 'í' => 'i', 'ì' => 'i', 'î' => 'i', 'ï' => 'i', 'Ñ' => 'n', 'ñ' => 'n', 'O' => 'o', 'Ó' => 'o', 'Ò' => 'o', 'Ô' => 'o', 'Ö' => 'o', 'Õ' => 'o', 'ó' => 'o', 'ò' => 'o', 'ô' => 'o', 'ö' => 'o', 'õ' => 'o', 'ø' => 'o', 'œ' => 'o', 'Š' => 'o', 'Ú' => 'u', 'Ù' => 'u', 'Û' => 'u', 'Ü' => 'u', 'U' => 'u', 'ú' => 'u', 'ù' => 'u', 'û' => 'u', 'ü' => 'u', 'Y' => 'y', 'Ý' => 'y', 'Ÿ' => 'y', 'ý' => 'y', 'ÿ' => 'y', 'Ž' => 'z', 'ž' => 'z'];
- $string = strtr($string, $a);
- $regx   = [' ', '.', '+', '@', '#', '!', '$', '%', '¨', '&', '*', '(', ')', '_', '-', '+', '=', ';', ':', ',', '\\', '|', '£', '¢', '¬', '/', '?', '°', '´', '`', '{', '}', '[', ']', 'ª', 'º', '~', '^', "\'", '"'];
+	$output = [];
+	$a      = ['Á' => 'a', 'À' => 'a', 'Â' => 'a', 'Ä' => 'a', 'Ã' => 'a', 'Å' => 'a', 'á' => 'a', 'à' => 'a', 'â' => 'a', 'ä' => 'a', 'ã' => 'a', 'å' => 'a', 'a' => 'a', 'Ç' => 'c', 'ç' => 'c', 'Ð' => 'd', 'É' => 'e', 'È' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'é' => 'e', 'è' => 'e', 'ê' => 'e', 'ë' => 'e', 'Í' => 'i', 'Î' => 'i', 'Ï' => 'i', 'í' => 'i', 'ì' => 'i', 'î' => 'i', 'ï' => 'i', 'Ñ' => 'n', 'ñ' => 'n', 'O' => 'o', 'Ó' => 'o', 'Ò' => 'o', 'Ô' => 'o', 'Ö' => 'o', 'Õ' => 'o', 'ó' => 'o', 'ò' => 'o', 'ô' => 'o', 'ö' => 'o', 'õ' => 'o', 'ø' => 'o', 'œ' => 'o', 'Š' => 'o', 'Ú' => 'u', 'Ù' => 'u', 'Û' => 'u', 'Ü' => 'u', 'U' => 'u', 'ú' => 'u', 'ù' => 'u', 'û' => 'u', 'ü' => 'u', 'Y' => 'y', 'Ý' => 'y', 'Ÿ' => 'y', 'ý' => 'y', 'ÿ' => 'y', 'Ž' => 'z', 'ž' => 'z'];
+	$string = strtr($string, $a);
+	$regx   = [' ', '.', '+', '@', '#', '!', '$', '%', '¨', '&', '*', '(', ')', '_', '-', '+', '=', ';', ':', ',', '\\', '|', '£', '¢', '¬', '/', '?', '°', '´', '`', '{', '}', '[', ']', 'ª', 'º', '~', '^', "\'", '"'];
 
- $replacement = str_replace($regx, '|', trim(strtolower($string)));
- $explode     = explode('|', $replacement);
+	$replacement = str_replace($regx, '|', trim(strtolower($string)));
+	$explode     = explode('|', $replacement);
 
- for ($i = 0; $i < count($explode); ++$i) {
-  if (!empty($explode[$i])) {
-   $output[] = trim($explode[$i]);
-  }
- }
+	for ($i = 0; $i < count($explode); ++$i) {
+		if (!empty($explode[$i])) {
+			$output[] = trim($explode[$i]);
+		}
+	}
 
- return implode($replace, $output);
+	return implode($replace, $output);
 }
 
 function download($path, $filename)
 {
- $headers = null;
+	$headers = null;
 
- // $headers .= ('Content-Description: File Transfer');
- // $headers .= ('Content-Type: application/octet-stream');
- // $headers .= ('Content-Disposition: attachment; filename=' . $filename);
- // $headers .= ('Content-Transfer-Encoding: binary');
- // $headers .= ('Expires: 0');
- // $headers .= ('Cache-Control: must-revalidate, post-check=0, pre-check=0');
- // $headers .= ('Pragma: public');
- // $headers .= ('Content-Length: ' . Storage::size($path));
+	// $headers .= ('Content-Description: File Transfer');
+	// $headers .= ('Content-Type: application/octet-stream');
+	// $headers .= ('Content-Disposition: attachment; filename=' . $filename);
+	// $headers .= ('Content-Transfer-Encoding: binary');
+	// $headers .= ('Expires: 0');
+	// $headers .= ('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+	// $headers .= ('Pragma: public');
+	// $headers .= ('Content-Length: ' . Storage::size($path));
 
- return Storage::download($path, $filename);
+	return Storage::download($path, $filename);
 }
 
 /**
@@ -133,209 +133,209 @@ function download($path, $filename)
  * @param array [ 'col' => 'column1', 'set' => boolean, 'div' => '<separator>']
  */
 function exibir_endereco(array $config = [
- [
-  'col' => 'address',
-  'set' => true,
-  'div' => ', ',
- ],
- [
-  'col' => 'address_nro',
-  'set' => true,
-  'div' => '<br> ',
- ],
- [
-  'col' => 'cep',
-  'set' => true,
-  'div' => ' - ',
- ],
- [
-  'col' => 'bairro',
-  'set' => true,
-  'div' => ', ',
- ],
- [
-  'col' => 'complemento',
-  'set' => true,
-  'div' => '<br>',
- ],
- [
-  'col' => 'cidade',
-  'set' => true,
-  'div' => ', ',
- ],
- [
-  'col' => 'uf',
-  'set' => true,
-  'div' => ' - ',
- ],
- [
-  'col' => 'pais',
-  'set' => true,
-  'div' => '',
- ],
+	[
+		'col' => 'address',
+		'set' => true,
+		'div' => ', ',
+	],
+	[
+		'col' => 'address_nro',
+		'set' => true,
+		'div' => '<br> ',
+	],
+	[
+		'col' => 'cep',
+		'set' => true,
+		'div' => ' - ',
+	],
+	[
+		'col' => 'bairro',
+		'set' => true,
+		'div' => ', ',
+	],
+	[
+		'col' => 'complemento',
+		'set' => true,
+		'div' => '<br>',
+	],
+	[
+		'col' => 'cidade',
+		'set' => true,
+		'div' => ', ',
+	],
+	[
+		'col' => 'uf',
+		'set' => true,
+		'div' => ' - ',
+	],
+	[
+		'col' => 'pais',
+		'set' => true,
+		'div' => '',
+	],
 ]) {
- $endereco = null;
+	$endereco = null;
 
- foreach ($config as $ind => $val) {
-  $local = null;
+	foreach ($config as $ind => $val) {
+		$local = null;
 
-  if (!empty($val) && !is_null($config[$ind++])) {
-   if (!empty(get_config($val['col']))) {
-    $local = get_config($val['col']);
-   }
+		if (!empty($val) && !is_null($config[$ind++])) {
+			if (!empty(get_config($val['col']))) {
+				$local = get_config($val['col']);
+			}
 
-   if ($ind < count($config)) {
-    if (!is_null(get_config($config[$ind++]['col']))) {
-     /*
-      * Aqui, verifica se a condição do próximo array
-      * é válida para exibir o próximo caráctere separador
-      */
-     if (!is_null($local)) {
-      if ($ind < count($config)) {
-       $local .= $val['div'];
-      }
-     }
-    }
-   }
-  }
+			if ($ind < count($config)) {
+				if (!is_null(get_config($config[$ind++]['col']))) {
+					/*
+					 * Aqui, verifica se a condição do próximo array
+					 * é válida para exibir o próximo caráctere separador
+					 */
+					if (!is_null($local)) {
+						if ($ind < count($config)) {
+							$local .= $val['div'];
+						}
+					}
+				}
+			}
+		}
 
-  $endereco .= $local;
- }
+		$endereco .= $local;
+	}
 
- return $endereco;
+	return $endereco;
 }
 
 if (!function_exists('base_url')) {
- function base_url()
- {
-  $baseUrl    = request()->getBaseUrl();
-  $currentUrl = request()->getRequestUri();
+	function base_url()
+	{
+		$baseUrl    = request()->getBaseUrl();
+		$currentUrl = request()->getRequestUri();
 
-  $dir = explode($baseUrl, $currentUrl);
-  array_shift($dir);
+		$dir = explode($baseUrl, $currentUrl);
+		array_shift($dir);
 
-  $path = explode('/', implode('/', $dir));
-  array_shift($path);
+		$path = explode('/', implode('/', $dir));
+		array_shift($path);
 
-  $baseUrl = is_dir(BASEDIR . 'app/Http/Controllers/' . ucfirst($path[0])) ? $path[0] : '/';
+		$baseUrl = is_dir(BASEDIR . 'app/Http/Controllers/' . ucfirst($path[0])) ? $path[0] : '/';
 
-  return url($baseUrl) . '/';
- }
+		return url($baseUrl) . '/';
+	}
 }
 
 /*
  * Fução para obter os menus da página
  */
 if (!function_exists('getMenus')) {
- function getMenus($local, $id, $attributes = [])
- {
-  $menu_model = new MenuModel();
+	function getMenus($local, $id, $attributes = [])
+	{
+		$menu_model = new MenuModel();
 
-  $ul = null;
+		$ul = null;
 
-  $menu = $menu_model->from('tb_acl_menu')
-   ->where('id_modulo', function ($query) {
-    $modulo = explode('/', request()->path())[0];
+		$menu = $menu_model->from('tb_acl_menu')
+			->where('id_modulo', function ($query) {
+				$modulo = explode('/', request()->path())[0];
 
-    return $query->select('id')
-     ->from('tb_acl_modulo')
-     ->where('path', '/' . $modulo)
-     ->first();
-   })
-   ->where('id', function ($query) use ($local) {
-    $query->select('id_menu')
-     ->distinct(true)
-     ->from('tb_acl_menu_descricao')
-     ->where('descricao', $local)
-     ->orWhere('id_menu', $local);
-   })
-   ->get()
-   ->first();
+				return $query->select('id')
+					->from('tb_acl_modulo')
+					->where('path', '/' . $modulo)
+					->first();
+			})
+			->where('id', function ($query) use ($local) {
+				$query->select('id_menu')
+					->distinct(true)
+					->from('tb_acl_menu_descricao')
+					->where('descricao', $local)
+					->orWhere('id_menu', $local);
+			})
+			->get()
+			->first();
 
-  if (isset($menu)) {
-   $items = $menu_model->from('tb_acl_menu_item')
-    ->where('id_menu', $menu->id)
-    ->where('id_parent', $id)
-    ->get();
+		if (isset($menu)) {
+			$items = $menu_model->from('tb_acl_menu_item')
+				->where('id_menu', $menu->id)
+				->where('id_parent', $id)
+				->get();
 
-   if ($items->count() > 0) {
-    $params = null;
-    if (!empty($attributes)) {
-     foreach ($attributes as $ind => $val) {
-      $params .= ' ' . $ind . '="' . $val . '"';
-     }
-    }
+			if ($items->count() > 0) {
+				$params = null;
+				if (!empty($attributes)) {
+					foreach ($attributes as $ind => $val) {
+						$params .= ' ' . $ind . '="' . $val . '"';
+					}
+				}
 
-    $ul = '<ul' . $params . '>';
+				$ul = '<ul' . $params . '>';
 
-    foreach ($items as $item) {
-     //  $table = 'tb_' . $item->item_type . '_descricao';
-     $table = 'tb_acl_menu_item_descricao';
+				foreach ($items as $item) {
+					//  $table = 'tb_' . $item->item_type . '_descricao';
+					$table = 'tb_acl_menu_item_descricao';
 
-     $label = $menu_model->from($table)
-      ->where('id_item', $item->id)
-      ->where('id_idioma', function ($query) {
-       $query->select('id')
-        ->from('tb_sys_idioma')
-        ->where('sigla', (isset($_COOKIE['idioma']) ? $_COOKIE['idioma'] : get_config('language')))
-        ->get()
-        ->first();
-      })
-      ->get()
-      ->first();
+					$label = $menu_model->from($table)
+						->where('id_item', $item->id)
+						->where('id_idioma', function ($query) {
+							$query->select('id')
+								->from('tb_sys_idioma')
+								->where('sigla', (isset($_COOKIE['idioma']) ? $_COOKIE['idioma'] : get_config('language')))
+								->get()
+								->first();
+						})
+						->get()
+						->first();
 
-     // Se não existir uma tradução válida para o Idioma selecionado, será obtido o Idioma padrão
-     if (!isset($label)) {
-      $label = $menu_model->from($table)
-       ->where('id_item', $item->id)
-       ->where('id_idioma', function ($query) {
-        $query->select('id')
-         ->from('tb_sys_idioma')
-         ->where('sigla', get_config('language'))
-         ->get()
-         ->first();
-       })
-       ->get()
-       ->first();
-     }
+					// Se não existir uma tradução válida para o Idioma selecionado, será obtido o Idioma padrão
+					if (!isset($label)) {
+						$label = $menu_model->from($table)
+							->where('id_item', $item->id)
+							->where('id_idioma', function ($query) {
+								$query->select('id')
+									->from('tb_sys_idioma')
+									->where('sigla', get_config('language'))
+									->get()
+									->first();
+							})
+							->get()
+							->first();
+					}
 
-     if (!isset($label)) {
-      $label = (object) ['titulo' => 'no title'];
-     }
+					if (!isset($label)) {
+						$label = (object) ['titulo' => 'no title'];
+					}
 
-     $submenus = $menu_model->from('tb_acl_menu_item')
-      ->where('id_parent', $item->id)
-      ->get();
+					$submenus = $menu_model->from('tb_acl_menu_item')
+						->where('id_parent', $item->id)
+						->get();
 
-     $ul .= '<li>';
+					$ul .= '<li>';
 
-     $route = $menu_model->select('name')
-      ->from('tb_acl_modulo_routes')
-      ->where('id_controller', $item->id_item)
-      ->where('route', '/')
-      ->first();
+					$route = $menu_model->select('name')
+						->from('tb_acl_modulo_routes')
+						->where('id_controller', $item->id_item)
+						->where('route', '/')
+						->first();
 
-     $ul .= '<a ' . (($submenus->count() > 0) ? 'class="collapsible-header waves-effect waves-cyan" href="javascript:void(0);" tabindex="0"' : 'href="' . route($route->name) . '"') . '>';
-     $ul .= $item->icon ? '<i class="material-icons">' . $item->icon . '</i>' : null;
-     $ul .= '<span class="menu-title" data-i18n="' . $label->titulo . '">' . $label->titulo . '</span>';
-     $ul .= '</a>';
+					$ul .= '<a ' . (($submenus->count() > 0) ? 'class="collapsible-header waves-effect waves-cyan" href="javascript:void(0);" tabindex="0"' : 'href="' . route($route->name) . '"') . '>';
+					$ul .= $item->icon ? '<i class="material-icons">' . $item->icon . '</i>' : null;
+					$ul .= '<span class="menu-title" data-i18n="' . $label->titulo . '">' . $label->titulo . '</span>';
+					$ul .= '</a>';
 
-     if ($submenus->count() > 0) {
-      $ul .= '<div class="collapsible-body">';
-      $ul .= getMenus($local, $item->id, [
-       'class'            => 'collapsible collapsible-sub',
-       'data-collapsible' => 'accordion',
-      ]);
-      $ul .= '</div>';
-     }
+					if ($submenus->count() > 0) {
+						$ul .= '<div class="collapsible-body">';
+						$ul .= getMenus($local, $item->id, [
+							'class'            => 'collapsible collapsible-sub',
+							'data-collapsible' => 'accordion',
+						]);
+						$ul .= '</div>';
+					}
 
-     $ul .= '</li>';
-    }
+					$ul .= '</li>';
+				}
 
-    $ul .= '</ul>';
-   }
-  }
+				$ul .= '</ul>';
+			}
+		}
 
-  return $ul;
- }
+		return $ul;
+	}
 }

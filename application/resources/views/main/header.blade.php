@@ -24,7 +24,7 @@
 			<div class="menu menu-right">
 				<ul>
 					<li><a href="{{ route('main.home') }}">Sobre</a></li>
-					<li><a href="{{ route('main.home') }}">Contato</a></li>
+					<li><a href="{{ route('main.contato') }}">Contato</a></li>
 				</ul>
 			</div>
 

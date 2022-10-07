@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models {
+namespace App\Models{
 
 	use Illuminate\Database\Eloquent\Factories\HasFactory;
 	use Illuminate\Database\Eloquent\Model;
+	use Illuminate\Support\Facades\DB;
 	use Illuminate\Support\Facades\Route;
 
 	class ModuloModel extends Model
@@ -34,7 +35,27 @@ namespace App\Models {
 		public function getRoutes($id = null, $id_parent = 0)
 		{
 
-			$routes = $this->from('tb_acl_modulo_routes')
+			$routes = $this->select(
+				'id',
+				'id_controller',
+				'id_parent',
+				'type',
+				'route',
+				DB::raw(
+					'CONCAT(
+						(SELECT namespace FROM tb_acl_modulo WHERE id =
+							(SELECT id_modulo FROM tb_acl_modulo_controller WHERE id = id_controller)
+						),
+						(SELECT controller FROM tb_acl_modulo_controller WHERE id = id_controller)
+					) AS controller'
+				),
+				'action',
+				'name',
+				'filter',
+				'permissao',
+				'restrict'
+			)
+				->from('tb_acl_modulo_routes')
 				->where('id_controller', $id)
 				->where('id_parent', $id_parent)
 			// ->where('status', '1')
@@ -44,36 +65,28 @@ namespace App\Models {
 
 				foreach ($routes as $route) {
 
-					$this->id_route         = $route->id;
-					$this->id_controller    = $route->id_controller;
-					$this->id_parent        = $route->id_parent;
-					$this->type_route       = $route->type;
-					$this->route            = $route->route;
-					$this->controller_route = $route->controller;
-					$this->action_route     = $route->action;
-					$this->name_route       = $route->name;
-					$this->filter_route     = $route->filter;
-					$this->permissao_route  = $route->permissao;
-					$this->restrict_route   = $route->restrict;
-
 					$subroute = $this->from('tb_acl_modulo_routes')
-						->where('id_parent', $this->id_route)
+						->where('id_parent', $route->id)
 						->get();
-
-					$type_route = $this->type_route;
 
 					if ($subroute->count() === 0) {
 
-						if (!empty($this->name_route)) {
-							Route::$type_route($this->route, [$this->controller_route, $this->action_route])->name($this->name_route);
+						$type_route = $route->type;
+
+						if (!empty($route->name)) {
+							Route::$type_route($route->route, [$route->controller, $route->action])->name($route->name);
 						} else {
-							Route::$type_route($this->route, [$this->controller_route, $this->action_route]);
+							Route::$type_route($route->route, [$route->controller, $route->action]);
 						}
 
 					} else {
-						Route::prefix($this->route)->group(function () {
-							$this->getRoutes($this->id_controller, $this->id_route);
+
+						Route::prefix($route->route)->group(function ($router) use ($route) {
+
+							$this->getRoutes($route->id_controller, $route->id_route);
+
 						});
+
 					}
 
 				}
@@ -97,7 +110,7 @@ namespace App\Models {
 		{
 
 			return $this->from('tb_acl_modulo_controller')
-				->where('namespace', $controller)
+				->where(DB::raw('CONCAT((SELECT namespace FROM tb_acl_modulo WHERE id = id_modulo), controller)'), $controller)
 				->where('restrict', 'yes')
 				->get()
 				->first() ? true : false;
@@ -109,7 +122,19 @@ namespace App\Models {
 			$this->name = $name;
 
 			return $this->from('tb_acl_modulo_routes')
-				->where('controller', $controller)
+				->where('id_controller', function ($query) use ($controller) {
+					$query->select('id')
+						->from('tb_acl_modulo_controller')
+						->where(
+							DB::raw('
+								CONCAT(
+									(SELECT namespace FROM tb_acl_modulo WHERE id = id_modulo),
+									tb_acl_modulo_controller.controller
+								)'
+							),
+							$controller
+						);
+				})
 				->where('action', $action)
 				->where(function ($where) {
 					$where->orWhereNull('name')
