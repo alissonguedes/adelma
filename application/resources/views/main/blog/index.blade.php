@@ -4,7 +4,7 @@
 
 @section('capa')
 <div class="nav-background">
-	<div class="capa" style="background-image: url('{{ asset('img/site/1.jpg') }}');"></div>
+	<div class="capa" style="background-image: url('{{ asset('img/site/ensaios/' . rand(1, 12). '.jpg') }}');"></div>
 </div>
 @endsection
 

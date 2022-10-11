@@ -10,8 +10,7 @@
 			<div class="menu menu-left">
 				<ul>
 					<li><a href="{{ route('main.home') }}">Início</a></li>
-					<li><a href="{{ route('main.home') }}">Galeria</a></li>
-					<li><a href="{{ route('main.blog') }}">Blog</a></li>
+					<li><a href="{{ route('main.galeria') }}">Galeria</a></li>
 				</ul>
 			</div>
 			<div class="logo">

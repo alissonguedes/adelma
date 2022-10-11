@@ -208,7 +208,7 @@ header nav ul li a:hover {
 	-webkit-transform: none;
 	transform: none;
 	background-repeat: repeat;
-	background-position: bottom;
+	background-position: center;
 	background-size: 100%;
 }
 
@@ -325,6 +325,11 @@ footer .menu a {
 
 #content-page {
 	padding: 6rem 0;
+}
+
+.db {
+	position: relative;
+	z-index: 999999;
 }
 
 

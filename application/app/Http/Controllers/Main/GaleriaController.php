@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Main{
 
-	class BlogController extends Controller
+	class GaleriaController extends Controller
 	{
 
 		public function index()
