@@ -1,7 +1,7 @@
 <!-- Core Javascript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/materialize/0.98.0/js/materialize.min.js"></script>
-<script src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/gallery.min.opt.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
 
 <script>
@@ -10,6 +10,8 @@
 			'duration': 2000,
 			'indicators': false
 		});
+		$('.sidenav').sidenav();
+		$('.parallax').parallax();
 	});
 	$(function() {
 		$(".popup-gallery").magnificPopup({
@@ -37,4 +39,5 @@
 			}
 		})
 	});
+
 </script>

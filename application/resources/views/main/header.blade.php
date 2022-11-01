@@ -1,41 +1,39 @@
-@section('capa')
-@show
-
 <header>
 
-	<nav class="nav-extended">
 
-		<div class="flex flex-center nav menu-bar">
+	<nav class="nav-extended nav-fixed white">
 
-			<div class="menu menu-left">
-				<ul>
-					<li><a href="{{ route('main.home') }}">Início</a></li>
-					<li><a href="{{ route('main.galeria') }}">Galeria</a></li>
-				</ul>
-			</div>
-			<div class="logo">
-				<a href="{{ route('main.home') }}" class="brand-logo">
-					<i class="logo"></i>
-					<span>Adelma Pedrosa</span>
-					<small>fotografia newborn</small>
+		<div class="nav-wrapper container">
+
+			<div class="menu-header">
+
+				<a href="{{ route('main.home') }}" itemprop="url" class="brand-logo site-logo">
+					<img src="{{ asset('img/site/logo/logo.png') }}" alt="" class="logo">
 				</a>
-			</div>
-			<div class="menu menu-right">
-				<ul>
-					<li><a href="{{ route('main.home') }}">Sobre</a></li>
-					<li><a href="{{ route('main.contato') }}">Contato</a></li>
-				</ul>
-			</div>
 
-			<a href="#" data-activates="nav-mobile" class="button-collapse btn-floating btn-flat hide-on-large-only"><i class="material-icons">menu</i></a>
+				<ul class="hide-on-med-and-down">
+					@yield('menu-list')
+				</ul>
+
+				<div class="flex flex-center flex-end">
+
+					<div class="form-search">
+						<input type="search" class="hide-on-small-only" placeholder="Pesquisar no site...">
+						<button type="submit" class="btn btn-flat btn-floating waves-effect">
+							<i class="material-icons">search</i>
+						</button>
+					</div>
+
+					<a href="#" data-target="slide-out" class="sidenav-trigger">
+						<i class="material-icons">menu</i>
+					</a>
+
+				</div>
+
+			</div>
 
 		</div>
 
 	</nav>
-
-
-	<div class="nav-header">
-		<h1>@yield('page-title')</h1>
-	</div>
 
 </header>

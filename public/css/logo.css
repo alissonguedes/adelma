@@ -6,28 +6,17 @@ nav .brand-logo, .logo a {
 
 nav .brand-logo,
 .brand-logo {
-	font-family: 'Amsterdam';
 	font-size: 28px !important;
 	line-height: 3;
-	text-align: center;
 	position: relative;
 	color: #000;
-	display: block;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	place-content: center;
-	align-items: center;
+
+	padding: 10px 0;
 }
 
-.brand-logo i.logo {
-	background-image: url('../img/site/logo/logo-ico.png');
-	background-size: 100%;
-	background-repeat: no-repeat;
-	width: 70px;
-	height: 70px;
+.brand-logo .logo {
+	width: 210px;
 	display: block;
-	/* margin: 0 auto; */
 	float: none;
 }
 

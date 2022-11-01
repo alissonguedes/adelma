@@ -24,12 +24,21 @@
 }
 
 body {
-	font-family: 'open-sans';
+	font-family: 'Montserrat';
 	font-size: 16px;
-	/* line-height: 1.5; */
 	margin: 0;
 	padding: 0;
 	background-color: transparent;
+}
+
+p {
+	margin: 15px 0 !important;
+}
+
+a {
+	color: var(--red);
+	text-decoration: none;
+	font-size: inherit;
 }
 
 h1,
@@ -87,14 +96,28 @@ h6 {
 	margin: .5rem 0 .4rem 0
 }
 
-a {
-	color: inherit;
-	text-decoration: underline;
-	font-size: inherit;
-}
-
 ul {
 	list-style: none;
+}
+
+@media only screen and (min-width: 993px) {
+	.container {
+		width: 90%;
+	}
+}
+
+.bg-opacity-1::after {
+	content: '';
+	background: #fff;
+	width: 100%;
+	height: inherit;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0.5;
+	z-index: -1;
 }
 
 /** Header And Menu **/
@@ -103,75 +126,73 @@ header {
 	position: absolute;
 	width: 100%;
 	z-index: 999999;
-	height: 200px;
+	height: 90px;
 }
 
 header nav {
 	display: flex;
 	flex: 1 1 100%;
 	width: 100%;
+	height: inherit;
+	line-height: inherit;
 	place-content: center;
 	align-items: center;
 	background-color: transparent;
 	box-shadow: none;
+	padding: 0 0.5rem;
 }
 
 header nav.nav-fixed {
 	position: fixed;
-}
-
-header nav .logo {
-	/* left: 30px; */
-	position: relative;
-	margin: 0 30px;
+	top: 0;
 }
 
 .nav-header {
 	clear: both;
-	/* padding: 40px 0; */
 	text-align: center;
 }
 
-.nav-header h1 {
-	font-size: 56px;
-	font-weight: 600;
-	text-transform: uppercase;
+nav.nav-extended {
+	height: inherit;
 }
 
-header nav .menu-bar {
-	padding: 30px 0;
-}
-
-header nav .menu {
+header .nav-extended .menu-header {
 	display: flex;
-	flex: 1 100%;
+	flex: 1 1 100%;
+	align-items: center;
+	place-content: space-between;
 }
 
-header nav .menu ul {
+header nav ul {
 	display: flex;
-	width: 100%;
+	list-style-type: none;
+	line-height: 95px;
+	height: 95px;
+	align-items: center;
+	font-weight: bold;
+	font-size: 16px;
+	color: var(--red-darken-4);
 }
 
 header nav .menu-left ul {
 	place-content: flex-end;
-	/* margin-right: 60px;*/
 }
 
 header nav .menu-right {
 	place-content: flex-start;
-	/* margin-left: 60px; */
 }
 
 header nav ul li {
 	display: inline-block;
 	justify-content: center;
+	color: inherit;
+	font-size: inherit;
 }
 
 header nav ul li a,
 nav ul:not(.indicators) li>a {
-	color: #000;
-	padding: 10px;
-	font-size: 14px;
+	color: inherit;
+	font-size: inherit;
 	background-color: transparent !important;
 	transition: ease-in-out 200ms;
 	text-decoration: none;
@@ -181,6 +202,45 @@ header nav ul li a:hover {
 	color: rgba(0, 0, 0, 0.5);
 }
 
+header .sidenav-trigger {
+	margin-left: 30px;
+}
+
+.form-search {
+	display: flex;
+	align-items: center;
+	height: 40px;
+	line-height: 40px;
+	position: relative;
+	overflow: hidden;
+	border-radius: 24px;
+	box-shadow: 5px 3px 10px 1px rgba(0, 0, 0, 0.22);
+}
+
+.form-search input[type="search"] {
+	background: var(--red-darken-2) !important;
+	padding: 0 18px;
+	margin: 0;
+	height: inherit;
+	border: 0;
+	color: #fff;
+}
+
+.form-search .btn {
+	border-radius: 0;
+	box-shadow: none;
+	line-height: inherit;
+	height: inherit;
+	width: 55px;
+	background-color: var(--teal-lighten-1);
+}
+
+.form-search .btn i {
+	height: inherit;
+	line-height: inherit;
+	margin-left: -6px;
+}
+
 .nav-background+header {
 	height: 400px;
 	position: relative;
@@ -188,21 +248,21 @@ header nav ul li a:hover {
 
 .nav-background {
 	width: 100%;
-	height: 400px;
-	position: absolute;
-	top: 0;
+	height: 150px;
+	top: 90px;
+	position: relative;
 	overflow: hidden;
-	position: absolute;
-	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: -1;
-	opacity: .4;
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	place-content: center;
 }
 
 .nav-background .capa {
+	/* opacity: .3 !important; */
 	top: 0;
 	bottom: 0;
 	-webkit-transform: none;
@@ -214,18 +274,27 @@ header nav ul li a:hover {
 
 .nav-background img,
 .nav-background .capa {
-	/* opacity: 0; */
+	opacity: 0;
 	position: absolute;
-	/* top: 50%; */
-	/* -webkit-transform: translateY(-50%); */
-	/* transform: translateY(-50%); */
+	top: -150%;
 	right: 0;
 	left: 0;
 	margin: 0 auto;
 	max-width: 100%;
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
 	transition: opacity .7s;
+}
+
+.nav-header {
+	position: relative;
+	overflow: hidden;
+	z-index: 9999;
+}
+
+.nav-header h1 {
+	font-size: 56px;
+	font-weight: 600;
+	text-transform: uppercase;
+	/* line-height: 190px; */
 }
 
 .button-collapse {
@@ -234,19 +303,25 @@ header nav ul li a:hover {
 	height: 40px !important;
 }
 
-nav i,
-nav [class^="mdi-"],
-nav [class*="mdi-"],
-nav i.material-icons {
-	line-height: 40px;
+nav a {
+	color: #000;
+}
+
+.sidenav {
+	top: 90px;
 }
 
 footer {
 	box-shadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
+	font-size: 14px;
 }
 
 footer .logo-footer {
 	display: inherit;
+}
+
+footer .brand-logo img {
+	width: 210px;
 }
 
 footer h5 {
@@ -261,36 +336,34 @@ footer .page-footer {
 	background-color: transparent;
 }
 
-.page-footer div .col {
-	margin-bottom: 30px;
-}
-
-footer .copy {
+footer .copy,
+footer .dev {
 	color: #fff;
 	font-size: 12px;
-	padding: 20px 0;
+	text-align: left;
+	padding-top: 20px !important;
+	padding-bottom: 20px !important;
 }
 
-footer .copy .row,
-footer .copy .col {
-	padding: 0 !important;
+footer .dev {
+	text-align: right;
 }
 
 footer .menu a {
 	text-decoration: none;
+	color: #fff;
 }
 
 .flex {
 	display: flex;
 }
 
+.items-center,
 .flex-center {
 	align-items: center;
-	flex: 1 1 100%;
 }
 
 .flex-end {
-	align-items: flex-end;
 	place-content: flex-end;
 	justify-content: space-between;
 }
@@ -365,17 +438,21 @@ footer .menu a {
 
 .slider {
 	overflow: hidden;
-	/* position: fixed !important; */
-	top: 0;
+	top: 90px !important;
 	right: 0;
 	bottom: 0;
 	left: 0;
 	z-index: -1;
+	position: relative;
 }
 
-.slider img {
-	opacity: 0.3;
-	filter: grayscale(1);
+.slider-fixed {
+	position: fixed;
+	position: fixed;
+	top: inherit;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 .row {
@@ -429,16 +506,18 @@ footer .menu a {
 	margin-bottom: 30px;
 }
 
+.address {
+	margin-bottom: 30px;
+}
+
 .social {
-	text-align: right;
 	display: flex;
+	place-content: flex-end;
 }
 
 .social li {
 	display: inline;
-	text-align: right;
-	margin-left: 15px;
-
+	margin-left: 25px;
 }
 
 .social li a {
@@ -489,11 +568,73 @@ footer .menu a {
 	line-height: 40px;
 }
 
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+	color: var(--red-darken-4);
+	text-transform: inherit;
+	font-weight: 900;
+}
+
+.card .card-content {
+	font-size: 9pt;
+	padding: 17px;
+}
+
+.card .card-content p {
+	margin: inherit;
+}
+
+.card:not(.horizontal) .card-title,
+.card-panel .card-title {
+	margin-top: 30px;
+	font-weight: bold;
+	text-align: center;
+	color: var(--red-darken-4);
+}
+
+.card .card-content ul,
+.card-panel ul {
+	clear: both;
+}
+
+.card-panel ul li,
+.card .card-content ul li {
+	display: flex;
+	align-items: center;
+	padding: 5px 0;
+	clear: both;
+}
+
+.card-panel ul li i.material-icons,
+.card .card-content ul li i.material-icons {
+	margin-right: 10px;
+}
+
+.avatar {
+	position: relative;
+	overflow: hidden;
+	width: 100px;
+	height: 100px;
+	margin: auto;
+}
+
+.avatar img {
+	width: auto;
+	height: 100%;
+}
+
+div.animated {
+	position: relative;
+	overflow: hidden;
+}
+
+.fa-icon {
+	font-size: 50px;
+}
+
 @media screen and (max-width:699px) {
 
 	header nav {
 		place-content: flex-start;
-		padding-left: 30px;
 	}
 
 	header nav .menu {
@@ -515,13 +656,28 @@ footer .menu a {
 		line-height: 3;
 	}
 
+	footer .logo-footer {
+		text-align: center;
+	}
+
 	footer .flex,
 	footer .flex-end,
-	footer .copy .left-align,
-	footer .copy .right-align {
+	footer .copy,
+	footer .dev,
+	footer .social {
 		place-content: center;
 		align-items: center;
 		text-align: center;
+	}
+
+	footer .address {
+		/* margin: 30px 0; */
+		text-align: center;
+	}
+
+	footer .copy,
+	footer .dev {
+		padding: 10px 0 !important;
 	}
 
 
@@ -530,6 +686,38 @@ footer .menu a {
 @media screen and (min-width: 700px) {
 
 	.button-collapse {
+		display: none;
+	}
+
+}
+
+@media only screen and (max-width: 992px) {
+
+	nav .brand-logo {
+		left: 0;
+		-webkit-transform: initial;
+		transform: initial;
+	}
+
+	.form-search {
+		overflow: initial;
+		box-shadow: none;
+	}
+
+	.form-search .btn {
+		border-radius: 50%;
+		text-align: center;
+		color: var(--grey-darken-4) !important;
+		width: 40px;
+		background-color: transparent;
+	}
+
+	.form-search .btn i {
+		color: inherit;
+		margin-left: 0;
+	}
+
+	.form-search input[type="search"] {
 		display: none;
 	}
 
